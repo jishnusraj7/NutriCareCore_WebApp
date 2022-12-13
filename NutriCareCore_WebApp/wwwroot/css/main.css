@@ -39,8 +39,6 @@ header {
 }
 
 .add-dish-btn {
-    background: black !important;
-    box-shadow: none !important;
     border-radius: 10em;
 }
     .add-dish-btn:hover {
@@ -67,4 +65,25 @@ footer{
     bottom:0;
     width:100%;
     background: white;
+}
+
+/*.input-group-text {
+    background-color:  white !important;
+    border: none !important;
+    border-radius: 0.25rem;
+}
+
+.input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: .25em !important;
+    border-bottom-left-radius: .25em !important;
+}*/
+.add-dish-input{
+    max-width: 300px !important;
+    height:35px !important;
+}
+
+.add-dish-inputtextarea {
+    max-width: 830px !important;
+    height: 200px !important;
 }

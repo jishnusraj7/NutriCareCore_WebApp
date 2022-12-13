@@ -11,5 +11,8 @@ namespace NutriCareCore_WebApp.Data
         }
 
         public DbSet<Dish> Dish { get; set; }
+        public DbSet<NSysEthnic> NSysEthnic { get; set; }
+        public DbSet<NSysFoodHabit> NSysFoodHabit { get; set; }
+        public DbSet<NSysFoodCategory> NSysFoodCategory { get; set; }
     }
 }

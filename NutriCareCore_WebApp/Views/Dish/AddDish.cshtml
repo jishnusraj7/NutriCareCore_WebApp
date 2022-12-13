@@ -1,23 +1,149 @@
-﻿
+﻿@model NutriCareCore_WebApp.Models.Dish;
 
-
-
+@Html.AntiForgeryToken()
 <div class="container">
     <div class="row">
 
-
-
-        <nav>
+        <nav class="sticky">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dish</button>
+                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Ingredients</button>
+                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Preparation</button>
                 <button class="nav-link" id="nav-nutrition-tab" data-bs-toggle="tab" data-bs-target="#nav-nutrition" type="button" role="tab" aria-controls="nav-nutrition" aria-selected="false">Nutrition</button>
 
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">hgjhsgajdsjadv</div>
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+                <div class="p-5 row ">
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Dish Name</label>
+                            </div>
+                            <div class="col-lg-10 col-7 d-flex justify-content-start">
+                                @*<input type="text" class="form-control add-dish-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">*@
+                                @Html.EditorFor(model => model.DishName, new { htmlAttributes = new { @*placeholder = "Enter Dish Name",*@@class = "form-control add-dish-input" } })
+                                @Html.ValidationMessageFor(model => model.DishName, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Name in English</label>
+                            </div>
+                            <div class="col-lg-10 col-7">
+                                @*<input type="text" class="form-control add-dish-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">*@
+                                @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @*placeholder = "Enter Display Name",*@@class = "form-control add-dish-input" } })
+                                @Html.ValidationMessageFor(model => model.DisplayName, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Ethnicity</label>
+                            </div>
+                            <div class="col-lg-10 col-7">
+                                @*<select class="form-control add-dish-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" style="font-size:13px">
+                                        <option selected>-- Select Ethinicity --</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>*@
+                                @Html.DropDownList("Ethinicity", (IEnumerable<SelectListItem>)ViewBag.Ethnic, new { @class = "form-control add-dish-input", @style = "font-size:13px" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Food Type</label>
+                            </div>
+                            <div class="col-lg-10 col-7">
+                                @Html.DropDownList("FoodType", (IEnumerable<SelectListItem>)ViewBag.FoodType, new { @class = "form-control add-dish-input", @style = "font-size:13px" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Category</label>
+                            </div>
+                            <div class="col-lg-10 col-7">
+                                @Html.DropDownList("FoodCategory", (IEnumerable<SelectListItem>)ViewBag.FoodCategory, new { @class = "form-control add-dish-input", @style = "font-size:13px" })
+
+                                @*@Html.DropDownListFor(x => Model.SelectedFoodCategoryIs, new SelectList(Model.FoodCategory, "Value", "Text"), htmlAttributes: new { @class = "form-control add-dish-input", @style = "font-size:13px", id = "FoodCategory" })
+                                    @Html.ValidationMessageFor(x => x.SelectedFoodCategoryIs, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Dish Image</label>
+                            </div>
+                            <div class="col-lg-10 col-7">
+
+                                <input type="file" name="formFile" onforminput="GetImage();" />
+                                @if (ViewBag.ImageURL != null)
+                                {
+                                    <img src="@ViewBag.ImageURL" style="width:300px; height:200px" />
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+                                <label>Remarks (English)</label>
+                            </div>
+                            <div class="col-lg-10 col-7">
+                                @*<textarea class="form-control add-dish-inputtextarea">
+                                    </textarea>*@
+                                @Html.EditorFor(model => model.DishRemark, new { htmlAttributes = new { @*placeholder = "Enter Dish Name",*@@class = "form-control add-dish-input" } })
+                                @Html.ValidationMessageFor(model => model.DishRemark, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row mb-3">
+                            <div class="col-lg-2 col-5">
+
+                            </div>
+                            <div class="col-lg-10 col-7">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-info text-center center float-end"><i class="icon-lock"></i> Register</button>
+                            @*<input type="submit" value="Register" class="btn btn-light px-5" />*@<!--<i class="icon-lock"></i>-->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">jadjsavdjsav</div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">akjsbsjahvda</div>
             <div class="tab-pane fade" id="nav-nutrition" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">kagxkasgd</div>
@@ -25,3 +151,41 @@
 
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('input[type="file"]').change(function (e) {
+            debugger
+            var fileName = e.target.files[0].name;
+            if (fileName != '') {
+                //DisplayImage(fileName);
+            }
+            //alert('The file "' + fileName + '" has been selected.');
+        });
+    });
+
+
+    function DisplayImage(val) {
+        debugger
+
+        $.ajax({
+            type: "DisplayImagePreview",
+            url: url,
+            success: function (data) {
+                if (data.success) {
+                }
+                else {
+                }
+            }
+        });
+    }
+
+</script>
+
