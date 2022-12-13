@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Dish>
+
+<partial name="_Notification" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+<div class="container p-0 m-0">
+
+
+
+    <div class="row mt-4 sticky">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <h2 class="text-info">Dishes</h2>
+            <div>
+                <a class="btn btn-dark add-dish-btn px-3" asp-area="" asp-controller="Dish" asp-action="AddDish"><i class="bi bi-plus-circle me-1"></i> Add Dish</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 p-3 mt-3">
+        <form method="post">
+            @if (Model.Count() > 0)
+            {
+
+
+                <div class="row">
+                    @foreach (var file in Model)
+                    {
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+
+                            <a class="dish-items" asp-area="" asp-controller="Category" asp-action="Index">
+                                <div class="card">
+                                    @if (@file.DisplayImage == "")
+                                    {
+                                        <img class="mb-2" src="~/Images/NoImage.jpg" style="width:100%;height:100px;object-fit:cover !important;" />
+                                    }
+                                    else
+                                    {
+                                        <img class="mb-2" src="~/Dishes/@file.DisplayImage" style="width:100%;height:100px;object-fit:cover !important;" />
+                                    }
+                                    <h6>
+                                        @file.DishName
+                                    </h6>
+                                </div>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+
+
+                @*<table class="table table-striped border" id="tbl_data">
+                        <tbody>
+                            @foreach (var file in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Dishes/@file.DisplayImage" style="width:100px;height:100px" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>*@
+            }
+            else
+            {
+                <p>No Categorys Available!</p>
+            }
+        </form>
+
+    </div>
+
+</div>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+
+
+
+    //$(document).ready(function () {
+    //    $('#tbl_data').DataTable();
+    //});
+
+
+    function Delete(url) {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "DELETE",
+                    url: url,
+                    success: function (data) {
+                        if (data.success) {
+                            //toastr.success(data.message);
+                            window.location.reload()
+                            //$('#tbl_data').DataTable();
+                            //dataTable.ajax.reload();
+                            toastr.options = {
+                                "debug": false,
+                                "positionClass": "toast-top-center",
+                                "onclick": null,
+                                "fadeIn": 300,
+                                "fadeOut": 1000,
+                                "timeOut": 5000,
+                                "extendedTimeOut": 1000
+                            }
+                            toastr.success(data.message);
+                        }
+                        else {
+                            toastr.error(data.message);
+                        }
+                    }
+                });
+            }
+        });
+        $(document).ready(function () {
+            $('#tbl_data').DataTable();
+        });
+    }
+
+</script>
+
