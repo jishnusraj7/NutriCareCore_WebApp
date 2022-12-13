@@ -39,6 +39,8 @@ header {
 }
 
 .add-dish-btn {
+    background: black !important;
+    box-shadow: none !important;
     border-radius: 10em;
 }
     .add-dish-btn:hover {

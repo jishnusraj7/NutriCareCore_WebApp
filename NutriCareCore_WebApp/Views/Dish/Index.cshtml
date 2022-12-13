@@ -11,7 +11,11 @@
             <h2 class="text-info">Dishes</h2>
             <div>
                 <a class="btn btn-dark add-dish-btn px-3" asp-area="" asp-controller="Dish" asp-action="AddDish"><i class="bi bi-plus-circle me-1"></i> Add Dish</a>
-            </div>
+        </div>
+
+        <div class="col-3">
+            @*<a class="btn btn-info form-control text-white" href="">Create New Category</a>*@
+            <a class="btn btn-info add-dish-btn form-control text-white" asp-area="" asp-controller="" asp-action=""><i class="bi bi-plus-circle"></i>&nbsp;  Add Dish</a>
         </div>
     </div>
 
@@ -21,45 +25,45 @@
             {
 
 
-                <div class="row">
-                    @foreach (var file in Model)
-                    {
-                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
-
-                            <a class="dish-items" asp-area="" asp-controller="Category" asp-action="Index">
-                                <div class="card">
+               <div class="row">
+                   @foreach (var file in Model)
+                   {
+                      <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+                         
+                              <a class="dish-items" asp-area="" asp-controller="Category" asp-action="Index">
+                                  <div class="card">
                                     @if (@file.DisplayImage == "")
                                     {
                                         <img class="mb-2" src="~/Images/NoImage.jpg" style="width:100%;height:100px;object-fit:cover !important;" />
                                     }
                                     else
                                     {
-                                        <img class="mb-2" src="~/Dishes/@file.DisplayImage" style="width:100%;height:100px;object-fit:cover !important;" />
+                                      <img class="mb-2" src="~/Dishes/@file.DisplayImage" style="width:100%;height:100px;object-fit:cover !important;" />
                                     }
-                                    <h6>
-                                        @file.DishName
-                                    </h6>
-                                </div>
-                            </a>
-                        </div>
-                    }
-
-                </div>
+                                      <h6>
+                                          @file.DishName
+                                      </h6>
+                                  </div>
+                              </a>
+                      </div>
+                   }
+                   
+               </div>
 
 
 
                 @*<table class="table table-striped border" id="tbl_data">
-                        <tbody>
-                            @foreach (var file in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        <img src="~/Dishes/@file.DisplayImage" style="width:100px;height:100px" />
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>*@
+                    <tbody>
+                        @foreach (var file in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Dishes/@file.DisplayImage" style="width:100px;height:100px" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>*@
             }
             else
             {
