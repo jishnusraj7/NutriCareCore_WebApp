@@ -1,0 +1,62 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    background: white !important;
+    color: black !important;
+    text-shadow: none !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+    color: black;
+    text-shadow:none !important;
+}
+
+.dish-items{
+    text-decoration: none !important;
+    color: white;
+}
+
+.dish-items h6 {
+    font-weight:300;
+    font-size:14px;
+}
+header {
+    position: sticky;
+    top: 0;
+    background: black;
+    z-index: 999;
+}
+.card {
+    background: white;
+    padding: .5em;
+    border-radius: .5em;
+    border: solid 1px #ced4da;
+    box-shadow: 1px 1px 10px #ced4da;
+    min-height:170px;
+}
+
+.add-dish-btn {
+    background: black !important;
+    box-shadow: none !important;
+    border-radius: 10em;
+}
+    .add-dish-btn:hover {
+        background: #343a40 !important;
+        box-shadow: none !important;
+    }
+
+
+.text-info{
+    color: black !important;
+}
+
+.sticky{
+    position:sticky !important;
+    top:75px !important;
+    background: white;
+    z-index: 998;
+    padding-top: .8em;
+    padding-bottom:.5em;
+}
